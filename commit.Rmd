@@ -3,40 +3,8 @@ output: github_document
 ---
 
 
-FileNotFoundError: 'Currencies.txt'
-
-The error message is `FileNotFoundError: [Errno 2] No such file or directory: 'D:\\install\\miniconda\\lib\\site-packages\\pysentiment\\static/Currencies.txt'`
-
-When I use `pysentiment.LM()`, the full error message:
-
-```bash
-FileNotFoundError                         Traceback (most recent call last)
-<ipython-input-17-208ee0b7ec88> in <module>
-----> 1 lm = pysentiment.LM()
-      2 lm.get_score(lm.tokenize(text=df["Headline"][0])).values()
-
-D:\install\miniconda\lib\site-packages\pysentiment\base.py in __init__(self, tokenizer)
-     53         self._negset = set()
-     54         if tokenizer is None:
----> 55             self._tokenizer = Tokenizer()
-     56         else:
-     57             self._tokenizer = tokenizer
-
-D:\install\miniconda\lib\site-packages\pysentiment\utils.py in __init__(self)
-     34     def __init__(self):
-     35         self._stemmer = nltk.PorterStemmer()
----> 36         self._stopset = self.get_stopset()
-     37 
-     38     def tokenize(self, text):
-
-D:\install\miniconda\lib\site-packages\pysentiment\utils.py in get_stopset(self)
-     50         stopset = set()
-     51         for f in files:
----> 52             fin = open('%s/%s'%(STATIC_PATH, f), 'rb')
-     53             for line in fin.readlines():
-     54                 line = line.decode(encoding='latin-1')
-
-FileNotFoundError: [Errno 2] No such file or directory: 'D:\\install\\miniconda\\lib\\site-packages\\pysentiment\\static/Currencies.txt'
+```{r}
+fs::dir_ls("D:/install/miniconda/Lib/site-packages/pysentiment/static")
 ```
 
-I install the package locally, because `pip install pysentiment` with error #10
+I manually copy files into this directory, it works.
