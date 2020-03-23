@@ -3,22 +3,40 @@ output: github_document
 ---
 
 
+FileNotFoundError: 'Currencies.txt'
+
+The error message is `FileNotFoundError: [Errno 2] No such file or directory: 'D:\\install\\miniconda\\lib\\site-packages\\pysentiment\\static/Currencies.txt'`
+
+When I use `pysentiment.LM()`, the full error message:
+
 ```bash
-$ cd pysentiment/
-$ pip install .
-Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
-Processing d:\work\pysentiment
-Requirement already satisfied: pandas>=0.10 in c:\users\lijiaxiang\appdata\roaming\python\python37\site-packages (from pysentiment==0.2) (0.25.3)
-Requirement already satisfied: nltk>=2.0 in d:\install\miniconda\lib\site-packages (from pysentiment==0.2) (3.4.5)
-Requirement already satisfied: numpy>=1.13.3 in c:\users\lijiaxiang\appdata\roaming\python\python37\site-packages (from pandas>=0.10->pysentiment==0.2) (1.18.2)
-Requirement already satisfied: python-dateutil>=2.6.1 in c:\users\lijiaxiang\appdata\roaming\python\python37\site-packages (from pandas>=0.10->pysentiment==0.2) (2.7.5)
-Requirement already satisfied: pytz>=2017.2 in d:\install\miniconda\lib\site-packages (from pandas>=0.10->pysentiment==0.2) (2018.7)
-Requirement already satisfied: six in d:\install\miniconda\lib\site-packages (from nltk>=2.0->pysentiment==0.2) (1.12.0)
-Building wheels for collected packages: pysentiment
-  Building wheel for pysentiment (setup.py) ... done
-  Stored in directory: C:\Users\LIJIAX~1\AppData\Local\Temp\pip-ephem-wheel-cache-0jcig2nr\wheels\d5\60\a8\279e726168e860a96d34ef1cdbd4759307ef9473ebe2da49af
-Successfully built pysentiment
-Installing collected packages: pysentiment
-Successfully installed pysentiment-0.2
+FileNotFoundError                         Traceback (most recent call last)
+<ipython-input-17-208ee0b7ec88> in <module>
+----> 1 lm = pysentiment.LM()
+      2 lm.get_score(lm.tokenize(text=df["Headline"][0])).values()
+
+D:\install\miniconda\lib\site-packages\pysentiment\base.py in __init__(self, tokenizer)
+     53         self._negset = set()
+     54         if tokenizer is None:
+---> 55             self._tokenizer = Tokenizer()
+     56         else:
+     57             self._tokenizer = tokenizer
+
+D:\install\miniconda\lib\site-packages\pysentiment\utils.py in __init__(self)
+     34     def __init__(self):
+     35         self._stemmer = nltk.PorterStemmer()
+---> 36         self._stopset = self.get_stopset()
+     37 
+     38     def tokenize(self, text):
+
+D:\install\miniconda\lib\site-packages\pysentiment\utils.py in get_stopset(self)
+     50         stopset = set()
+     51         for f in files:
+---> 52             fin = open('%s/%s'%(STATIC_PATH, f), 'rb')
+     53             for line in fin.readlines():
+     54                 line = line.decode(encoding='latin-1')
+
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\install\\miniconda\\lib\\site-packages\\pysentiment\\static/Currencies.txt'
 ```
 
+I install the package locally, because `pip install pysentiment` with error #10
