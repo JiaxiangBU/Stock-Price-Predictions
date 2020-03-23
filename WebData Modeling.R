@@ -1,4 +1,4 @@
-df<-read.table("C:/Users/simon/Downloads/Model_Data.csv",sep = ",",header = T)
+df <- read.table("Model Data.csv", sep = ",", header = T)
 df<-df[complete.cases(df),]
 
 
@@ -204,7 +204,7 @@ summary(logmod)
 
 
 ###############################################
-###   LOGIT  
+###   LOGIT
 ###############################################
 
 
@@ -295,3 +295,4 @@ summary(modgen)
 sqrt(summary(mod)$adj.r.squared-summary(modgen)$adj.r.squared)
 1.1^mod$coefficients[3:5]
 1.1^modgen$coefficients[3:5]
+
